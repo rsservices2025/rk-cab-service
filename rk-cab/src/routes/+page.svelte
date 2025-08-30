@@ -1,7 +1,7 @@
 <!-- src/routes/+page.svelte -->
 
 <script>
-  // हमारी नई आइकन लाइब्रेरी से आइकन्स इम्पोर्ट करें
+  // हमारी आइकन लाइब्रेरी से आइकन्स इम्पोर्ट करें
   import { CarFrontFill, GeoAltFill, AirplaneFill } from 'svelte-bootstrap-icons';
 </script>
 
@@ -12,7 +12,7 @@
     background-size: cover;
     background-position: center;
     color: white;
-    padding: 8rem 0;
+    padding: 8rem 2rem; /* पैडिंग को थोड़ा एडजस्ट किया */
     text-align: center;
   }
 
@@ -40,7 +40,6 @@
     transform: scale(1.05);
   }
 
-  /* सर्विस कार्ड्स के लिए थोड़ी स्टाइल */
   .service-card {
     border: 0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -54,31 +53,34 @@
 </style>
 
 <!-- हीरो सेक्शन HTML -->
+<!-- इस सेक्शन को main टैग से बाहर निकाला ताकि यह फुल-विड्थ हो -->
 <div class="hero-section">
   <div class="container">
-    <h1 class="display-4">Reliable Cab Service in Ahmedabad</h1>
-    <p class="lead">
+    <h1 class="display-4" data-aos="fade-up">Reliable Cab Service in Ahmedabad</h1>
+    <p class="lead" data-aos="fade-up" data-aos-delay="200">
       Your trusted partner for city rides, outstation trips, and round trips. Book your
       ride today for a comfortable and safe journey.
     </p>
     
-    <a href="tel:8160009585" class="btn btn-primary btn-lg me-2 mt-3">
-      Call Now
-    </a>
-    <a href="https://wa.me/918160009585" class="btn btn-success btn-lg mt-3" target="_blank">
-      WhatsApp Us
-    </a>
+    <div data-aos="zoom-in" data-aos-delay="400">
+      <a href="tel:9624712994" class="btn btn-primary btn-lg me-2 mt-3">
+        Call Now
+      </a>
+      <a href="https://wa.me/919624712994" class="btn btn-success btn-lg mt-3" target="_blank">
+        WhatsApp Us
+      </a>
+    </div>
   </div>
 </div>
 
 <!-- Services Section -->
 <div class="container my-5 py-5">
-  <h2 class="text-center">Our Services</h2>
-  <p class="text-center text-muted mb-5">We offer a wide range of services to meet your travel needs.</p>
+  <h2 class="text-center" data-aos="fade-up">Our Services</h2>
+  <p class="text-center text-muted mb-5" data-aos="fade-up" data-aos-delay="100">We offer a wide range of services to meet your travel needs.</p>
   
   <div class="row g-4">
     <!-- Service Card 1: Local City Rides -->
-    <div class="col-lg-4 col-md-6">
+    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
       <div class="card h-100 text-center service-card">
         <div class="card-body p-4">
           <CarFrontFill size="48" class="mb-3 text-primary" />
@@ -92,7 +94,7 @@
     </div>
 
     <!-- Service Card 2: Outstation Trips -->
-    <div class="col-lg-4 col-md-6">
+    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
       <div class="card h-100 text-center service-card">
         <div class="card-body p-4">
           <GeoAltFill size="48" class="mb-3 text-primary" />
@@ -106,7 +108,7 @@
     </div>
 
     <!-- Service Card 3: Airport Transfers -->
-    <div class="col-lg-4 col-md-6">
+    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
       <div class="card h-100 text-center service-card">
         <div class="card-body p-4">
           <AirplaneFill size="48" class="mb-3 text-primary" />

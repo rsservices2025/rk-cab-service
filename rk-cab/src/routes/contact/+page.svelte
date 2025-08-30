@@ -31,7 +31,7 @@
               <TelephoneFill size="24" class="me-3 text-primary" />
               <div>
                 <strong>Phone:</strong><br/>
-                <a href="tel:9624712994">096247 12994</a>
+                <a href="tel:8160009585">8160009585</a>
               </div>
             </div>
 
@@ -39,7 +39,7 @@
               <Whatsapp size="24" class="me-3 text-success" />
               <div>
                 <strong>WhatsApp:</strong><br/>
-                <a href="https://wa.me/919624712994" target="_blank">096247 12994</a>
+                <a href="https://wa.me/918160009585" target="_blank">8160009585</a>
               </div>
             </div>
             
