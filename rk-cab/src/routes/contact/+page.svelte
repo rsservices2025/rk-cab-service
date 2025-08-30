@@ -52,14 +52,14 @@
           <TelephoneFill size="24" class="me-3 text-primary" />
           <div>
             <strong>Phone:</strong><br/>
-            <a href="tel:9624712994">096247 12994</a>
+            <a href="tel:8160009585">081600 09585</a>
           </div>
         </div>
         <div class="d-flex align-items-center mb-3">
           <Whatsapp size="24" class="me-3 text-success" />
           <div>
             <strong>WhatsApp:</strong><br/>
-            <a href="https://wa.me/919624712994" target="_blank">096247 12994</a>
+            <a href="https://wa.me/918160009585" target="_blank">081600 09585</a>
           </div>
         </div>
         <div class="d-flex align-items-start mb-3">
