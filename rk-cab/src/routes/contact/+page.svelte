@@ -1,40 +1,15 @@
 <!-- src/routes/contact/+page.svelte -->
 
 <script>
-  import { onMount } from 'svelte';
-  import { TelephoneFill, Whatsapp, GeoAltFill } from 'svelte-bootstrap-icons';
+  import { TelephoneFill, Whatsapp, GeoAltFill, CheckCircleFill, ExclamationTriangleFill } from 'svelte-bootstrap-icons';
   
-  // onMount का उपयोग यह सुनिश्चित करने के लिए है कि मैप केवल क्लाइंट-साइड (ब्राउज़र में) रेंडर हो।
-  onMount(async () => {
-    // Leaflet को डाइनेमिक रूप से इम्पोर्ट करें
-    const L = await import('leaflet');
-
-    const lat = 22.98234;
-    const long = 72.645953;
-
-    // मैप को 'map' आईडी वाले div में इनिशियलाइज़ करें
-    const map = L.map('map').setView([lat, long], 15); // 15 ज़ूम लेवल है
-
-    // OpenStreetMap टाइल लेयर जोड़ें (यह मैप की टाइल्स को दिखाता है)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // हमारे लोकेशन पर एक मार्कर जोड़ें
-    L.marker([lat, long]).addTo(map)
-      .bindPopup('<b>RK CAB SERVICES</b><br>Karnavati Enclave, Ahmedabad.')
-      .openPopup();
-  });
+  // यह 'form' प्रॉप SvelteKit एक्शन से डेटा प्राप्त करेगा
+  export let form;
 </script>
 
 <svelte:head>
   <title>Contact Us - RK CAB SERVICES</title>
-  <meta name="description" content="Get in touch with RK CAB SERVICES. Call us, message us on WhatsApp, or find our address in Ahmedabad." />
-  
-  <!-- Leaflet की CSS को इम्पोर्ट करें -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
+  <meta name="description" content="Get in touch with RK CAB SERVICES. Call us, message us on WhatsApp, or send us a message through our contact form." />
 </svelte:head>
 
 <div class="container my-5">
@@ -43,44 +18,76 @@
     <p class="lead text-muted">We'd love to hear from you! Reach out for bookings or any inquiries.</p>
   </div>
   
-  <div class="row g-4">
-    <div class="col-lg-6">
-      <div class="card h-100 p-4" style="background-color: #f8f9fa;">
-        <h3 class="mb-4">Contact Information</h3>
-        <!-- ... (बाकी संपर्क जानकारी वैसी ही रहेगी) ... -->
-        <div class="d-flex align-items-center mb-3">
-          <TelephoneFill size="24" class="me-3 text-primary" />
-          <div>
-            <strong>Phone:</strong><br/>
-            <a href="tel:8160009585">081600 09585</a>
+  <div class="row g-4 justify-content-center">
+    <!-- Contact Information and Form Column (अब एक ही कॉलम में) -->
+    <div class="col-lg-8">
+      <div class="card p-4">
+        <div class="row">
+          <!-- Contact Information (Left Side) -->
+          <div class="col-md-6 mb-4 mb-md-0">
+            <h3 class="mb-4">Contact Information</h3>
+            
+            <div class="d-flex align-items-center mb-3">
+              <TelephoneFill size="24" class="me-3 text-primary" />
+              <div>
+                <strong>Phone:</strong><br/>
+                <a href="tel:9624712994">096247 12994</a>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center mb-3">
+              <Whatsapp size="24" class="me-3 text-success" />
+              <div>
+                <strong>WhatsApp:</strong><br/>
+                <a href="https://wa.me/919624712994" target="_blank">096247 12994</a>
+              </div>
+            </div>
+            
+            <div class="d-flex align-items-start mb-3">
+              <GeoAltFill size="24" class="me-3 text-danger" />
+              <div>
+                <strong>Location:</strong><br/>
+                Ahmedabad, Gujarat
+              </div>
+            </div>
+          </div>
+          
+          <!-- Contact Form (Right Side) -->
+          <div class="col-md-6">
+            <h3 class="mb-4">Send us a Message</h3>
+            <form method="POST">
+              <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" required value={form?.name ?? ''}>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" required value={form?.email ?? ''}>
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required>{form?.message ?? ''}</textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Send Message</button>
+            </form>
           </div>
         </div>
-        <div class="d-flex align-items-center mb-3">
-          <Whatsapp size="24" class="me-3 text-success" />
-          <div>
-            <strong>WhatsApp:</strong><br/>
-            <a href="https://wa.me/918160009585" target="_blank">081600 09585</a>
+
+        <!-- सफलता या असफलता का मैसेज दिखाने के लिए (कार्ड के अंदर नीचे) -->
+        {#if form?.success}
+          <div class="alert alert-success d-flex align-items-center mt-4" role="alert">
+            <CheckCircleFill class="me-2" />
+            <div>{form.success}</div>
           </div>
-        </div>
-        <div class="d-flex align-items-start mb-3">
-          <GeoAltFill size="24" class="me-3 text-danger" />
-          <div>
-            <strong>Address:</strong><br/>
-            KARNAVATI ENCLAVE, New Maninagar, Ahmedabad, Gujarat 382449
+        {/if}
+
+        {#if form?.error}
+          <div class="alert alert-danger d-flex align-items-center mt-4" role="alert">
+            <ExclamationTriangleFill class="me-2" />
+            <div>{form.error}</div>
           </div>
-        </div>
-        
-        <!-- Google Map Iframe की जगह अब यह div है -->
-        <div class="mt-4 rounded" id="map" style="height: 250px; width: 100%;"></div>
-      </div>
-    </div>
-    
-    <div class="col-lg-6">
-      <div class="card h-100 p-4">
-        <h3 class="mb-4">Send us a Message</h3>
-        <div class="text-center p-5 border rounded">
-          <p class="lead">Contact Form Coming Soon!</p>
-        </div>
+        {/if}
+
       </div>
     </div>
   </div>
